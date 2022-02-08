@@ -4,19 +4,27 @@
 
 
 #clue {
-    display: contents;
+    display: initial;
+    text-align: center;
 }
 
 #clue span {
-    width: 15px;
+    /* width: 15px; */
     text-align: center;
     font-size: larger;
     transition: all 1s;
     font-family: 'Courier New', Courier, monospace;
+    white-space: pre;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#clue span span {
+    transition: all 1s;
 }
 
 #clue span.shrink {
-    width: 0px;
+    /* width: 0px; */
     font-size: 0px;
 }
 

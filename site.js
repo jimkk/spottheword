@@ -1,5 +1,5 @@
 var answers = [
-    'TOKAY, OF WHICH I HAD TWO GLASSES, WAS MY SUPPER.|3,13,22,24,47|ACTOR'
+    'THE DOOR OPPOSITE MINE I TRIED, BUT FOUND IT LOCKED.|0,14,15,45,49|TITLE'
 ];
 var clue;
 var answer = '';
@@ -11,14 +11,21 @@ $(document).ready(()=>{
     for (var i = 0; i < answer_key.length; i++){
         answer += clue[parseInt(answer_key[i])]
     }
+    var j = 20;
+    clue_html = '<span>';
     for (var i = 0; i < clue.length; i++){
-        if (answer_key.includes(i.toString())){
-            $('#clue').append('<span class="a">' + clue[i] + '</span>')    
+        if(clue[i].localeCompare(' ') == 0){
+            clue_html += '</span><span> </span><span>';
+        }
+        else if (answer_key.includes(i.toString())){
+            clue_html += '<span class="a">' + clue[i] + '</span>'  ;
         }
         else {
-            $('#clue').append('<span>' + clue[i] + '</span>')
+            clue_html += '<span>' + clue[i] + '</span>';
         }
     }
+    clue_html += '</span>';
+    $('#clue').append(clue_html);
 })
 
 function colourSpan(s, c){
@@ -37,7 +44,7 @@ $('#guessForm').submit((e) =>{
     console.log('Guess is: ' + guess);
     
     var j = 0
-    $('#clue').children('span').each(function(i){
+    $('#clue').children('span').children('span').each(function(i){
         var letter = $(this).text();
         if(guess.includes(letter)){
             if(answer.includes(letter) && $(this).attr('class') === 'a'){
@@ -57,8 +64,20 @@ $('#guessForm').submit((e) =>{
 
     if(guess == answer){
         console.log('Correct!')
-        $('#clue').children('span').each(function(i){
-            if ($(this).attr('class') != 'a'){
+        $('#clue').children('span').each(function(){
+            var has_answer_letters = false;
+            $(this).children('span').each(function(i){
+                if ($(this).attr('class') != 'a')
+                {
+                    $(this).attr('class', 'shrink');
+                }
+                else
+                {
+                    colourSpan(this, 'green');
+                    has_answer_letters = true;
+                }
+            });
+            if(!has_answer_letters){
                 $(this).attr('class', 'shrink');
             }
         });
