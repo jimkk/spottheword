@@ -1,0 +1,29 @@
+.row {
+    justify-content: center;
+}
+
+
+#clue {
+    display: contents;
+}
+
+#clue span {
+    width: 15px;
+    text-align: center;
+    font-size: larger;
+    transition: all 1s;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#clue span.shrink {
+    width: 0px;
+    font-size: 0px;
+}
+
+.grid {
+    display: grid;
+}
+
+#guesses {
+    display: grid;
+}
