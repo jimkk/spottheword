@@ -22,7 +22,7 @@ var clue;
 var answer = '';
 
 const urlParams = new URLSearchParams(window.location.search);
-const clue_param = urlParams.get('clue');
+const clue_param = urlParams.get('clue') ? parseInt(urlParams.get('clue')) : 0;
 
 $(document).ready(()=>{
     var clue_w_answers = answers[0];
@@ -105,6 +105,8 @@ $('#guessForm').submit((e) =>{
                 $(this).attr('class', 'shrink');
             }
         });
+        $('#nextPuzzle').attr('href', $('#nextPuzzle').attr('href') + (clue_param + 1));
+        $('#nextPuzzle').attr('style', '');
     }
 
     $('#guesses').append('<span>' + guess + '</span>')
