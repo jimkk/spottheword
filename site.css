@@ -2,6 +2,9 @@
     justify-content: center;
 }
 
+span {
+    font-family: 'Courier New', Courier, monospace;
+}
 
 #clue {
     display: initial;
@@ -13,7 +16,7 @@
     text-align: center;
     font-size: larger;
     transition: all 1s;
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
     white-space: pre;
     display: inline-block;
     vertical-align: middle;
@@ -34,4 +37,8 @@
 
 #guesses {
     display: grid;
+}
+
+#guesses span{
+    text-align: center;
 }
